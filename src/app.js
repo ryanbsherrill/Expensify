@@ -1,48 +1,61 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
-const ExpenseDashboardPage = () => (
+const Dashboard = () => (
   <div>
-    From ExpenseDashboardPage
+    From Dashboard
   </div>
 );
 
-const CreateExpensePage = () => (
+const CreateExpense = () => (
   <div>
-    From CreateExpensePage
+    From Create Expense
   </div>
 );
 
-const EditExpensePage = () => (
+const EditExpense = () => (
   <div>
-    From EditExpensePage
+    From Edit Expense
   </div>
 );
 
-const HelpPage = () => (
+const Help = () => (
   <div>
-    From HelpPage
+    From Help
   </div>
 );
 
-const NotFoundPage = () => (
+const NotFound = () => (
   <div>
-    404 FAIL!!!
+    404 FAIL!!! - <Link to="/">Go Home</Link>
   </div>
+);
+
+const Header = () => (
+  <header>
+    <h1>Expensify</h1>
+    <NavLink to="/" activeClassName="is-active" exact={true}>Dashboard</NavLink>
+    <NavLink to="/create" activeClassName="is-active">Create Expense</NavLink>
+    <NavLink to="/edit" activeClassName="is-active">Edit Expense</NavLink>
+    <NavLink to="/help" activeClassName="is-active">Help</NavLink>
+  </header>
 );
 
 const routes = (
   <BrowserRouter>
-    <Switch>
-      <Route path="/" component={ExpenseDashboardPage} exact={true} />
-      <Route path="/create" component={CreateExpensePage} />
-      <Route path="/edit" component={EditExpensePage} />
-      <Route path="/help" component={HelpPage} />
-      <Route component={NotFoundPage} />
-    </Switch>
+    <div>
+      <Header />
+      <Switch>
+        <Route path="/" component={Dashboard} exact={true} />
+        <Route path="/create" component={CreateExpense} />
+        <Route path="/edit" component={EditExpense} />
+        <Route path="/help" component={Help} />
+        <Route component={NotFound} />
+      </Switch>
+    </div>
   </BrowserRouter>
 );
 
